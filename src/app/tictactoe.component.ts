@@ -2,24 +2,7 @@ import { Component } from "@angular/core";
 
 @Component({
   selector: "tictactoe",
-  template: `
-    <div id="statusArea" className="status">
-      Next player: <span>{{ currentPlayer }}</span>
-    </div>
-    <div id="winnerArea" className="winner">
-      Winner: <span>{{ winner }}</span>
-    </div>
-    <section>
-      <div class="row" *ngFor="let row of [0, 1, 2]; let i = index">
-        <button
-          (click)="onCol(row, col, $event)"
-          [disabled]="winner"
-          *ngFor="let col of [0, 1, 2]"
-          style="width:50px;height:50px;"
-        ></button>
-      </div>
-    </section>
-  `,
+  templateUrl: "tictactoe.component.html",
   styles: []
 })
 export class TicTacToeComponent {
@@ -43,7 +26,7 @@ export class TicTacToeComponent {
   ];
 
   onCol(row, col, event): void {
-    if (!event.target.innerHTML) {
+    if (event.target.innerHTML === '&nbsp;') {
       if (this.currentPlayer === this.playerA) {
         this.matrixA[this.playerACount] = [row, col];
         this.playerACount++;
@@ -74,11 +57,11 @@ export class TicTacToeComponent {
     }
   }
 
-  printPlay(event) {
+  private printPlay(event): void {
     event.target.innerHTML = this.currentPlayer;
   }
 
-  switchPlayer() {
+  private switchPlayer(): void {
     this.currentPlayer =
       this.currentPlayer === this.playerA ? this.playerB : this.playerA;
   }

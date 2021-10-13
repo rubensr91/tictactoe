@@ -1,0 +1,12 @@
+<div id="statusArea" className="status">
+    Next player: <span>{{ currentPlayer }}</span>
+</div>
+<div id="winnerArea" className="winner">
+    Winner: <span>{{ winner }}</span>
+</div>
+<section>
+    <div class="row" *ngFor="let row of [0, 1, 2]; let i = index">
+        <button (click)="onCol(row, col, $event)" [disabled]="winner" *ngFor="let col of [0, 1, 2]"
+            style="width:80px;height:80px;">&nbsp;</button>
+    </div>
+</section>
